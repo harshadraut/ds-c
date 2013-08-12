@@ -1,0 +1,52 @@
+# All Hidden Files
+.*
+
+# Object files
+*.o
+
+# Library files
+*.la
+*.lo
+
+# Temporary files created by gedit
+*~
+
+# Intermediate files created by autotools 
+*.in
+*.m4
+
+# cache directory of autotools
+autom4te.cache/
+
+# Final file created by autotools
+configure
+
+# Build Directory
+build-aux/
+
+# Makefiles
+Makefile
+
+# config files created by autotools
+config.h
+config.log
+config.status
+
+# Libtool
+libtool
+
+# Stamp file
+stamp*
+
+# Binary Executable file of the program.
+src/dsdemo
+
+# Binary Executable test file
+tests/check_linkedlist
+
+# netbeans project folder
+nbproject/
+
+# Don't ignore .gitignore even when ignoring hidden files.
+!.gitignore
+
