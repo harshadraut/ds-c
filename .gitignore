@@ -39,10 +39,12 @@ libtool
 stamp*
 
 # Binary Executable file of the program.
-src/dsdemo
+src/*demo
+!src/*demo.c
 
 # Binary Executable test file
-tests/check_linkedlist
+tests/check_*
+!tests/check_*.c
 
 # netbeans project folder
 nbproject/
