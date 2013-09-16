@@ -14,7 +14,7 @@ int stack_push(stack_t *s, int x)
                 s->data[s->top] = x;
                 return 0;
         }else{
-                return 1;
+                return -1;
         }
 }
 
@@ -29,7 +29,8 @@ int stack_pop(stack_t *s)
 
 int stack_len(const stack_t *s)
 {
+/* Stack length is the number of elements currently in the stack
+ */
         return s->top + 1;
 }
-
 
