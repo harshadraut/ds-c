@@ -9,7 +9,7 @@ void stack_init(stack_t *s)
 
 int stack_push(stack_t *s, int x)
 {
-        if( s->capacity - s->top > 1 ){
+        if( stack_len(s) < s->capacity ){
                 s->top++;
                 s->data[s->top] = x;
                 return 0;
@@ -20,7 +20,7 @@ int stack_push(stack_t *s, int x)
 
 int stack_pop(stack_t *s)
 {
-        if( s->top >= 0 ){
+        if( stack_len(s) > 0 ){
                 int value = s->data[s->top];
                 s->top--;
                 return value;
