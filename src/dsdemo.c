@@ -17,7 +17,7 @@ int main(int argc, char** argv) {
         printf("Stack Demo\n");
         stack_t *s;
         s = malloc(sizeof(stack_t));
-        stack_init(s);
+        stack_init(s, 10);
         int i;
 
         for(i = 1; i <= 10; i++){

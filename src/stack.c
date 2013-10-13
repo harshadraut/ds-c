@@ -1,9 +1,9 @@
 #include"stack.h"
 
-void stack_init(stack_t *s)
+void stack_init(stack_t *s, int capacity)
 {
         s->top = -1;
-        s->capacity = 10;
+        s->capacity = capacity;
         s->data = calloc(s->capacity, sizeof(int));
 }
 
