@@ -32,7 +32,8 @@ int main()
                         printf("Unable to pop\n");
                 }
         }
-
+        stack_destroy(&s);
+        stack_reinit(&s, 20);
         return 0;
 }
 

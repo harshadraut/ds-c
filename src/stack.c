@@ -62,3 +62,25 @@ int stack_len(const stack_t *s)
         return s->top + 1;
 }
 
+int stack_destroy(stack_t *s)
+{
+        free(s->data);
+        s->data = NULL;
+        return 0;
+}
+
+int stack_reinit(stack_t *s, int capacity)
+{
+        return stack_destroy(s) && stack_init(s, capacity);
+}
+
+int stack_resize(stack_t *s, int capacity)
+{
+        s->capacity = capacity;
+        s->data = realloc(s->data, s->capacity * sizeof(int));
+        if( s-> data != NULL || s->capacity == 0 ){
+                return 0;
+        }else{
+                return -1;
+        }
+}
