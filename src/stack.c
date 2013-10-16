@@ -77,6 +77,9 @@ int stack_clear(stack_t *s)
 
 int stack_resize(stack_t *s, int capacity)
 {
+        if( capacity < s->capacity ){
+                s->top = capacity - 1;
+        }
         s->capacity = capacity;
         s->data = realloc(s->data, s->capacity * sizeof(int));
         if( s-> data != NULL || s->capacity == 0 ){
