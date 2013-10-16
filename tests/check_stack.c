@@ -33,7 +33,7 @@ int main()
                 }
         }
         stack_destroy(&s);
-        stack_reinit(&s, 20);
+        stack_clear(&s);
         return 0;
 }
 

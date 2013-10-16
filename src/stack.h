@@ -15,7 +15,7 @@ int stack_pop(stack_t *s, int *value);
 int stack_len(const stack_t *s);
 
 int stack_destroy(stack_t *s);
-int stack_reinit(stack_t *s, int capacity);
+int stack_clear(stack_t *s);
 
 int stack_resize(stack_t *s, int capacity);
 #endif	/* STACK_H */

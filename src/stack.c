@@ -69,9 +69,10 @@ int stack_destroy(stack_t *s)
         return 0;
 }
 
-int stack_reinit(stack_t *s, int capacity)
+int stack_clear(stack_t *s)
 {
-        return stack_destroy(s) && stack_init(s, capacity);
+        s->top = -1;
+        return 0;
 }
 
 int stack_resize(stack_t *s, int capacity)
@@ -84,3 +85,4 @@ int stack_resize(stack_t *s, int capacity)
                 return -1;
         }
 }
+
