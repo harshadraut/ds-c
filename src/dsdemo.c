@@ -9,11 +9,10 @@
 #include <stdlib.h>
 #include"ds.h"
 #include"stack.h"
+#include"queue.h"
 
-
-int main(int argc, char** argv) {
-
-        printf("DS Demo\n");
+int stack_demo()
+{
         printf("Stack Demo\n");
         stack_t *s;
         s = malloc(sizeof(stack_t));
@@ -46,6 +45,52 @@ int main(int argc, char** argv) {
         }
         free(s);
         s = NULL;
-        return (EXIT_SUCCESS);
+        return 0;
+}
+
+
+int queue_demo()
+{
+        printf("Queue Demo\n");
+        queue_t *q;
+        q = malloc(sizeof(queue_t));
+        if( queue_init(q, 10) == 0 ){
+                printf("Queue Initialized\n");
+        }else{
+                printf("Queue Initialization Failed\n");
+        }
+
+        int i;
+
+        for(i = 1; i <= 10; i++){
+                if( 0 == queue_enqueue(q, i) ){
+                        printf("Enqueued %d onto Queue\n", i);
+                        printf("Length of Queue: %d\n", queue_len(q));
+                }else{
+                        printf("Unable to Enquque %d\n", i);
+                }
+        }
+
+        for(i = 1; i <= 10; i++){
+                int value;
+                if ( queue_dequeue(q, &value) == 0 ){
+                        printf("Dequeued %d from Queue\n", value);
+                        printf("Length of Queue: %d\n", queue_len(q));
+                }else{
+                        printf("Unable to Dequeue\n");
+                }
+
+        }
+        free(q);
+        q = NULL;
+        return 0;
+
+}
+
+
+int main(int argc, char** argv) {
+        printf("DS Demo\n");
+        if ( stack_demo() == 0 && queue_demo() == 0 )
+                return (EXIT_SUCCESS);
 }
 
