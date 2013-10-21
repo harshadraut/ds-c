@@ -2,7 +2,9 @@
 #define DS_H
 
 
-#include "linkedlist.h"
+#include"stack.h"
+#include"queue.h"
+#include"slist.h"
 
 
 

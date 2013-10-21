@@ -8,8 +8,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include"ds.h"
-#include"stack.h"
-#include"queue.h"
 
 int stack_demo()
 {
