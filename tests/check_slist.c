@@ -1,5 +1,4 @@
 #include<stdlib.h>
-#include<stdbool.h>
 #include<check.h>
 #include<../src/slist.h>
 
