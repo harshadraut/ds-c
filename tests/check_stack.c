@@ -18,7 +18,7 @@ START_TEST(int_push_pop)
                 ck_assert_int_eq(x, 0);
                 x = stack_len(&s);
                 ck_assert_int_eq(x, i + 1);
-                x = s.data[s.top];
+                x = stack_top(&s);
                 ck_assert_int_eq(x, a[i]);
         }
 
