@@ -1,7 +1,8 @@
 #include<stdlib.h>
+#include<string.h>  /* For memcpy */
 #include"stack.h"
 
-int stack_init(stack_t *s, int capacity)
+int stack_init(stack_t *s, int capacity, size_t ele_size)
 {
         /*  Initializes the stack with the given capacity
          *  @param s: Pointer to stack_t type variable
@@ -11,7 +12,8 @@ int stack_init(stack_t *s, int capacity)
          */
         s->top = -1;
         s->capacity = capacity;
-        s->data = calloc(s->capacity, sizeof (int));
+        s->ele_size = ele_size;
+        s->data = calloc(s->capacity, s->ele_size);
         if (s-> data != NULL || s->capacity == 0) {
                 return 0;
         } else {
@@ -19,7 +21,7 @@ int stack_init(stack_t *s, int capacity)
         }
 }
 
-int stack_push(stack_t *s, int x)
+int stack_push(stack_t *s, void *x)
 {
         /*  Pushes an element on to the stack
          *  @param s: Pointer to stack_t type variable
@@ -29,14 +31,14 @@ int stack_push(stack_t *s, int x)
          */
         if (stack_len(s) < s->capacity) {
                 s->top++;
-                s->data[s->top] = x;
+                memcpy(s->data + s->ele_size * s->top, x, s->ele_size);
                 return 0;
         } else {
                 return -1;
         }
 }
 
-int stack_pop(stack_t *s, int *value)
+int stack_pop(stack_t *s, void *value)
 {
         /*  Value that is popped from the stack is placed in value parameter,
          *  @param s: Pointer to stack_t type variable
@@ -45,7 +47,7 @@ int stack_pop(stack_t *s, int *value)
          *              -1 Otherwise
          */
         if (stack_len(s) > 0) {
-                *value = s->data[s->top];
+                memcpy(value, s->data + s->ele_size * s->top, s->ele_size);
                 s->top--;
                 return 0;
         } else {
@@ -81,7 +83,7 @@ int stack_resize(stack_t *s, int capacity)
                 s->top = capacity - 1;
         }
         s->capacity = capacity;
-        s->data = realloc(s->data, s->capacity * sizeof (int));
+        s->data = realloc(s->data, s->capacity * s->ele_size);
         if (s-> data != NULL || s->capacity == 0) {
                 return 0;
         } else {
@@ -89,7 +91,7 @@ int stack_resize(stack_t *s, int capacity)
         }
 }
 
-int stack_top(stack_t *s)
+void stack_top(stack_t *s, void *value)
 {
-        return s->data[s->top];
+        memcpy(value, s->data + s->ele_size * s->top, s->ele_size);
 }

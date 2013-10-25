@@ -3,17 +3,18 @@
 
 typedef struct{
         int top;
-        int *data;
+        void *data;
         int capacity;
+        size_t ele_size;
 }stack_t;
 
-int stack_init(stack_t *s, int capacity);
+int stack_init(stack_t *s, int capacity, size_t ele_size);
 
-int stack_push(stack_t *s, int x);
-int stack_pop(stack_t *s, int *value);
+int stack_push(stack_t *s, void *x);
+int stack_pop(stack_t *s, void *value);
 
 int stack_len(const stack_t *s);
-int stack_top(stack_t *s);
+void stack_top(stack_t *s, void *value);
 
 int stack_destroy(stack_t *s);
 int stack_clear(stack_t *s);

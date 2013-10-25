@@ -14,7 +14,8 @@ int stack_demo()
         printf("Stack Demo\n");
         stack_t *s;
         s = malloc(sizeof(stack_t));
-        if( stack_init(s, 10) == 0 ){
+        int n = 10;
+        if( stack_init(s, n, sizeof(int)) == 0 ){
                 printf("Stack Initialized\n");
         }else{
                 printf("Stack Initialization Failed\n");
@@ -22,8 +23,8 @@ int stack_demo()
 
         int i;
 
-        for(i = 1; i <= 10; i++){
-                if( 0 == stack_push(s, i) ){
+        for(i = 1; i <= n; i++){
+                if( 0 == stack_push(s, &i) ){
                         printf("Pushed %d onto stack\n", i);
                         printf("Length of stack: %d\n", stack_len(s));
                 }else{
@@ -31,7 +32,7 @@ int stack_demo()
                 }
         }
 
-        for(i = 1; i <= 10; i++){
+        for(i = 1; i <= n; i++){
                 int value;
                 if ( stack_pop(s, &value) == 0 ){
                         printf("Popped %d from stack\n", value);

@@ -1,3 +1,4 @@
+#include<stdio.h>
 #include<stdlib.h>
 #include<check.h>
 #include"../src/stack.h"
@@ -7,18 +8,18 @@ START_TEST(int_push_pop)
         stack_t s;
         int n = random() % 60267;
         int *a = calloc(n, sizeof (int));
-        ck_assert_int_eq(stack_init(&s, n), 0);
+        ck_assert_int_eq(stack_init(&s, n, sizeof (int)), 0);
         int i;
         for (i = 0; i < n; i++) {
                 a[i] = random() % 1210211;
         }
 
         for (i = 0; i < n; i++) {
-                int x = stack_push(&s, a[i]);
+                int x = stack_push(&s, &a[i]);
                 ck_assert_int_eq(x, 0);
                 x = stack_len(&s);
                 ck_assert_int_eq(x, i + 1);
-                x = stack_top(&s);
+                stack_top(&s, &x);
                 ck_assert_int_eq(x, a[i]);
         }
 
@@ -41,33 +42,31 @@ START_TEST(float_push_pop)
         stack_t s;
         int n = random() % 60267;
         float *a = calloc(n, sizeof (float));
-        ck_assert_int_eq(stack_init(&s, n), 0);
+        ck_assert_int_eq(stack_init(&s, n, sizeof (float)), 0);
         int i;
         for (i = 0; i < n; i++) {
                 a[i] = (random() % 1210211) / (1.0 + random() / 23129.0);
         }
 
+        float value;
+        char str[100];
         for (i = 0; i < n; i++) {
-                int x = stack_push(&s, a[i]);
+                int x = stack_push(&s, &a[i]);
                 ck_assert_int_eq(x, 0);
                 x = stack_len(&s);
                 ck_assert_int_eq(x, i + 1);
-                float value;
-                value = stack_top(&s);
-                char s[100];
-                sprintf(s, "value is %f, a[i] is %f\n", value, a[i]);
-                ck_assert_msg(value == a[i], s);
+                stack_top(&s, &value);
+                sprintf(str, "value is %f, a[i] is %f\n", value, a[i]);
+                ck_assert_msg(value == a[i], str);
         }
 
         for (i = n - 1; i >= 0; i--) {
-                float value;
                 int x = stack_pop(&s, &value);
                 ck_assert_int_eq(x, 0);
-                char s[100];
-                sprintf(s, "value is %f, a[i] is %f\n", value, a[i]);
-                ck_assert_msg(value == a[i], s);
                 x = stack_len(&s);
                 ck_assert_int_eq(x, i);
+                sprintf(str, "value is %f, a[i] is %f\n", value, a[i]);
+                ck_assert_msg(value == a[i], str);
         }
         stack_destroy(&s);
 }
