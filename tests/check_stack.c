@@ -73,6 +73,51 @@ START_TEST(float_push_pop)
 
 END_TEST
 
+START_TEST(string_push_pop)
+{
+        stack_t s;
+        int n = random() % 70267 + 1110;
+        char **a = calloc(n, sizeof (char *));  /* n pointers to char *  */
+        ck_assert_int_eq(stack_init(&s, n, sizeof (char *)), 0);
+        int i;
+        for (i = 0; i < n; i++) {
+                int n1 = random() % 13 + 4;
+                a[i] = calloc(n1 + 1, sizeof (char));
+                int j;
+                for (j = 0; j < n1; j++) {
+                        a[i][j] = random() % 26 + 97;
+                }
+                a[i][n1] = 0;
+        }
+
+        char *value;
+        for (i = 0; i < n; i++) {
+                int x = stack_push(&s, &a[i]);
+                ck_assert_int_eq(x, 0);
+                x = stack_len(&s);
+                ck_assert_int_eq(x, i + 1);
+                stack_top(&s, &value);
+                ck_assert_str_eq(value, a[i]);
+        }
+
+        for (i = n - 1; i >= 0; i--) {
+                int x = stack_pop(&s, &value);
+                ck_assert_int_eq(x, 0);
+                x = stack_len(&s);
+                ck_assert_int_eq(x, i);
+                ck_assert_str_eq(value, a[i]);
+        }
+
+        stack_destroy(&s);
+
+        for (i = 0; i < n; i++) {
+                free(a[i]);
+        }
+        free(a);
+}
+
+END_TEST
+
 Suite* stack_suite()
 {
         Suite *s = suite_create("Stack");
@@ -83,11 +128,16 @@ Suite* stack_suite()
         TCase *tc_float = tcase_create("float");
         /* Stack float data type Test Case*/
 
+        TCase *tc_string = tcase_create("string");
+        /* Stack float data type Test Case*/
+
         tcase_add_test(tc_int, int_push_pop);
         tcase_add_test(tc_float, float_push_pop);
+        tcase_add_test(tc_string, string_push_pop);
 
         suite_add_tcase(s, tc_int);
         suite_add_tcase(s, tc_float);
+        suite_add_tcase(s, tc_string);
 
         return s;
 }
