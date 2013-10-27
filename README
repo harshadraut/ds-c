@@ -5,12 +5,12 @@ Implementation of various data structures in C, generic implementation
 wherever possible. Nothing big, only for fun and learning.
 
 How to Install
---------------
+==============
 
 Prerequisites for installation:
 -------------------------------
 
-1. autotools
+1. gcc
 2. make
 
 Prerequisites for Running Tests:
@@ -21,18 +21,37 @@ Prerequisites for Running Tests:
 Steps to run tests:
 -------------------
 
-1. Download a release, if not available download latest commit
-from github.
-2. Extract the archive if you have downloaded archive and cd into the
-extracted directory.
-3. Run the below command
-autoreconf --install
-4. If the above command runs successfully, run the next command
+1. Download a release from github.
+
+2. Extract the archive and cd into the extracted directory.
+
+3. Run this command
+
 ./configure
+
+4. If the above command runs successfully, run this
+
+make
+
 5. Again, if the above command runs successfully, run this
+
 make install
-6. If you want to run tests to make sure everything works fine, run this
+
+6. If you want to run tests(Optional) to make sure everything works fine, run this
+
 make check
 
-Now, you can just include header files like stack.h, queue.h and it just works.
+Now, you can include header files stack.h, queue.h, etc.
+
+For linking the ds library, gcc command would look like,
+
+gcc -L/usr/local/lib/ds your_cprog.c -lds
+
+where 'your_cprog.c' is your c program using ds library.
+
+By default ds library is installed into /usr/local/lib/ds unless
+you have changed the prefix while `configur`ing.
+
+If you find any bugs or have any feature requests,
+please create an Issue on Github.
 
