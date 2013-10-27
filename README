@@ -1,0 +1,38 @@
+ds-c
+====
+
+Implementation of various data structures in C, generic implementation
+wherever possible. Nothing big, only for fun and learning.
+
+How to Install
+--------------
+
+Prerequisites for installation:
+-------------------------------
+
+1. autotools
+2. make
+
+Prerequisites for Running Tests:
+--------------------------------
+
+1. Check
+
+Steps to run tests:
+-------------------
+
+1. Download a release, if not available download latest commit
+from github.
+2. Extract the archive if you have downloaded archive and cd into the
+extracted directory.
+3. Run the below command
+autoreconf --install
+4. If the above command runs successfully, run the next command
+./configure
+5. Again, if the above command runs successfully, run this
+make install
+6. If you want to run tests to make sure everything works fine, run this
+make check
+
+Now, you can just include header files like stack.h, queue.h and it just works.
+
