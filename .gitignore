@@ -5,6 +5,7 @@
 *.o
 
 # Library files
+*.a
 *.la
 *.lo
 

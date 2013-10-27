@@ -1,4 +1,4 @@
-AC_INIT([algorithms], [0.1], [ysaimanojkumar@gmail.com])
+AC_INIT([ds], [0.1], [ysaimanojkumar@gmail.com])
 AC_CONFIG_AUX_DIR([build-aux])
 AM_INIT_AUTOMAKE([ -Wall -Werror])
 AM_PATH_CHECK()

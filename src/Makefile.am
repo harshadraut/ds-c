@@ -1,11 +1,14 @@
-lib_LTLIBRARIES = libds.la libslist.la libstack.la libqueue.la
-libds_la_SOURCES = ds.h
-libslist_la_SOURCES = slist.c slist.h
-libstack_la_SOURCES = stack.c stack.h
-libqueue_la_SOURCES = queue.c queue.h
+lib_LIBRARIES = libds.a
+
+libds_adir = $(includedir)/ds
+libdir = @libdir@/ds
+
+libds_a_HEADERS = ds.h slist.h stack.h queue.h
+
+libds_a_SOURCES = slist.c stack.c queue.c
 
 bin_PROGRAMS = dsdemo
 
 dsdemo_SOURCES = dsdemo.c
-dsdemo_LDADD = libds.la libslist.la libstack.la libqueue.la
+dsdemo_LDADD = libds.a
 
