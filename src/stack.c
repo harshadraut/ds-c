@@ -91,7 +91,11 @@ int stack_resize(stack_t *s, int capacity)
         }
 }
 
-void stack_top(stack_t *s, void *value)
+int stack_top(stack_t *s, void *value)
 {
-        memcpy(value, s->data + s->ele_size * s->top, s->ele_size);
+        if (stack_len(s) > 0) {
+                memcpy(value, s->data + s->ele_size * s->top, s->ele_size);
+                return 0;
+        }
+        return -1;
 }
