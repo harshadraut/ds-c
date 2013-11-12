@@ -129,7 +129,7 @@ Suite* stack_suite()
         /* Stack float data type Test Case*/
 
         TCase *tc_string = tcase_create("string");
-        /* Stack float data type Test Case*/
+        /* Stack char * data type Test Case*/
 
         tcase_add_test(tc_int, int_push_pop);
         tcase_add_test(tc_float, float_push_pop);
