@@ -4,7 +4,7 @@
 
 #include"stack.h"
 #include"queue.h"
-#include"slist.h"
+#include"sllist.h"
 
 
 

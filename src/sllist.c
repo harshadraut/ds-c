@@ -1,26 +1,26 @@
 #include<stdlib.h>
-#include"slist.h"
+#include"sllist.h"
 
-void sl_list_init(sl_list *list)
+void sllist_init(sllist *list)
 {
         list->len = 0;
         list->next = NULL;
 }
 
-int sl_list_ins_begin(sl_list *list, int value)
+int sllist_insbegin(sllist *list, int value)
 {
-        return sl_list_ins(list, value, 0);
+        return sllist_ins(list, value, 0);
 }
 
-int sl_list_ins_end(sl_list *list, int value)
+int sllist_insend(sllist *list, int value)
 {
-        return sl_list_ins(list, value, list->len);
+        return sllist_ins(list, value, list->len);
 }
 
-int sl_list_ins(sl_list *list, int value, int index)
+int sllist_ins(sllist *list, int value, int index)
 {
-        sl_node *node, *ptr;
-        node = malloc(sizeof (sl_node));
+        sllnode *node, *ptr;
+        node = malloc(sizeof (sllnode));
         if (node == NULL || list == NULL) {
                 return -1;
         }
@@ -41,10 +41,10 @@ int sl_list_ins(sl_list *list, int value, int index)
         return 0;
 }
 
-int sl_list_at(sl_list *list, int index, int *value)
+int sllist_at(sllist *list, int index, int *value)
 {
         int i;
-        sl_node *ptr;
+        sllnode *ptr;
         for (i = 0, ptr = list->next; i < list->len && ptr != NULL;
                 i++, ptr = ptr->next) {
                 if (i == index) {
