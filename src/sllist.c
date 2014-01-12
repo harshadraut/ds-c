@@ -19,9 +19,12 @@ int sllist_insend(sllist *list, int value)
 
 int sllist_ins(sllist *list, int value, int index)
 {
+        if( list == NULL ){
+                return -1;
+        }
         sllnode *node, *ptr;
         node = malloc(sizeof (sllnode));
-        if (node == NULL || list == NULL) {
+        if (node == NULL) {
                 return -1;
         }
         node->data = value;
